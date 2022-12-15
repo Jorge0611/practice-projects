@@ -89,3 +89,4 @@ typings/
 
 #Build folders
 dist/
+build/
