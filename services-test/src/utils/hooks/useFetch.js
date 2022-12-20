@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
+import { API_SECRET } from "../../config/index.js";
 
 /**
- *
+ * React hook to fetch data from the API
  * @param {string | {url, method, body}} query
  * @returns
  */
@@ -17,8 +18,7 @@ export function useFetch(query) {
     method: query.method,
     headers: {
       "Content-Type": "application/json",
-      "X-Authorization":
-        "XiS9cuDMlRP0YtMsXPNepZFti5jqeoQdm0LbnZh8IMvZmF118LqCNSSj6CDVnYPv",
+      "X-Authorization": API_SECRET,
     },
   };
 

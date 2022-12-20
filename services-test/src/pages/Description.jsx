@@ -1,11 +1,28 @@
 import { Link, useParams } from "react-router-dom";
 import { useFetch } from "../utils/hooks/useFetch";
+import { API_URL, PORTAL_URL } from "../config/index.js";
 
 function Description() {
   const params = useParams();
-  const { data, isLoading } = useFetch(
-    `http://devbackofficeservicios.aduanas.gob.do/api/services/${params.id}`
-  );
+  /**
+   * @type {{
+   *   data: {
+   *     name: string;
+   *     description: string;
+   *     prices: {
+   *       id: number;
+   *       concept: string;
+   *       variations: {
+   *         id: number;
+   *         concept: string;
+   *         price: float;
+   *         coin: string;
+   *       }[];
+   *     }[];
+   *   }
+   * }}
+   */
+  const { data, isLoading } = useFetch(`${API_URL}/services/${params.id}`);
 
   if (isLoading) return <h1>Cargando...</h1>;
 
@@ -53,23 +70,19 @@ function Description() {
         <button
           onClick={() =>
             window.open(
-              `http://devservicios.aduanas.gob.do/app/serviceDescription/${params.id}`,
+              `${PORTAL_URL}/app/serviceDescription/${params.id}`,
               "_blank"
             )
           }
         >
-          Mas información
+          Ver detalles en el portal de servicios
         </button>{" "}
         <button
-          target="_blank"
           onClick={() =>
-            window.open(
-              `http://devservicios.aduanas.gob.do/app/requestService/${params.id}`,
-              "_blank"
-            )
+            window.open(`${PORTAL_URL}/requestService/${params.id}`, "_blank")
           }
         >
-          Solicitar
+          Solicitar servicio
         </button>
       </div>
     </>

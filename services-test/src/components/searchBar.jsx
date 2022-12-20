@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { useDebounce } from "../utils/hooks/useDebounce";
 
 /**
- *
- * @param {{ onSearch: void }} props
+ * React component that renders a search bar.
+ * @param {{ onSearch: (string) => void }} props
  * @returns
  */
 export function SearchBar({ onSearch = () => {} }) {

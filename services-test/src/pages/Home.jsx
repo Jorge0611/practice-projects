@@ -2,12 +2,21 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { SearchBar } from "../components/searchBar";
 import { useFetch } from "../utils/hooks/useFetch";
+import { API_URL } from "../config/index.js";
 
 function App() {
   const [searchTerm, setSearchTerm] = useState("");
-  const { data, isLoading } = useFetch(
-    "http://devbackofficeservicios.aduanas.gob.do/api/services"
-  );
+  /**
+   * @type {{
+   *   data: {
+   *     services: {
+   *       id: number;
+   *       name: string;
+   *     }[];
+   *   };
+   * }}
+   */
+  const { data, isLoading } = useFetch(`${API_URL}/services`);
 
   const getData = () => {
     return data

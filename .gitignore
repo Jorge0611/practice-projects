@@ -90,3 +90,7 @@ typings/
 #Build folders
 dist/
 build/
+
+#IDE config folders
+.idea/
+.vscode/
