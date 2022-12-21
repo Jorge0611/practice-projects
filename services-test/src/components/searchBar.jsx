@@ -20,7 +20,7 @@ export function SearchBar({ onSearch = () => {} }) {
         Search:
         <input
           style={{ width: "100%" }}
-          placeholder="Search element by name..."
+          placeholder="Search elements..."
           onChange={(e) => setInput(e.target.value)}
         />
       </label>

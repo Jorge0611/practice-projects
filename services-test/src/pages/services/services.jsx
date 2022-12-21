@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { SearchBar } from "../components/searchBar";
-import { useFetch } from "../utils/hooks/useFetch";
-import { API_URL } from "../config/index.js";
+import { SearchBar } from "../../components/searchBar.jsx";
+import { useFetch } from "../../utils/hooks/useFetch.js";
+import { API_URL } from "../../config/index.js";
+import { MainLayout } from "../../components/mainLayout.jsx";
 
-function App() {
+export function Services() {
   const [searchTerm, setSearchTerm] = useState("");
   /**
    * @type {{
@@ -38,7 +39,7 @@ function App() {
           {getData().map((service) => {
             return (
               <li key={service.id}>
-                <Link to={`/${service.id}`}>{service.name}</Link>
+                <Link to={`/services/${service.id}`}>{service.name}</Link>
               </li>
             );
           })}
@@ -49,5 +50,3 @@ function App() {
     </div>
   );
 }
-
-export default App;

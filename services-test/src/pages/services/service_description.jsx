@@ -1,8 +1,8 @@
-import { Link, useParams } from "react-router-dom";
-import { useFetch } from "../utils/hooks/useFetch";
-import { API_URL, PORTAL_URL } from "../config/index.js";
+import { useParams } from "react-router-dom";
+import { useFetch } from "../../utils/hooks/useFetch.js";
+import { API_URL, PORTAL_URL } from "../../config/index.js";
 
-function Description() {
+export function ServiceDescription() {
   const params = useParams();
   /**
    * @type {{
@@ -22,14 +22,12 @@ function Description() {
    *   }
    * }}
    */
-  const { data, isLoading } = useFetch(`${API_URL}/services/${params.id}`);
+  const { data, isLoading } = useFetch(`${API_URL}/services/${params.service}`);
 
   if (isLoading) return <h1>Cargando...</h1>;
 
   return (
     <>
-      <br />
-      <Link to={".."}>⬅ Regresar</Link>
       <h1>{data.name}</h1>
       <p>{data.description}</p>
 
@@ -42,24 +40,24 @@ function Description() {
 
             <table>
               <thead>
-                <tr>
-                  <th style={{ width: "30%" }}>Concepto</th>
-                  <th>Descripción</th>
-                  <th style={{ width: "20%" }}>Precio</th>
-                </tr>
+              <tr>
+                <th style={{ width: "30%" }}>Concepto</th>
+                <th>Descripción</th>
+                <th style={{ width: "20%" }}>Precio</th>
+              </tr>
               </thead>
               <tbody>
-                {price.variations.map((variation) => (
-                  <tr key={variation.id}>
-                    <td>{variation.concept}</td>
-                    <td>{variation.description}</td>
-                    <td>
-                      {parseFloat(variation.price) > 0
-                        ? variation.price + " " + variation.coin
-                        : "Gratis"}
-                    </td>
-                  </tr>
-                ))}
+              {price.variations.map((variation) => (
+                <tr key={variation.id}>
+                  <td>{variation.concept}</td>
+                  <td>{variation.description}</td>
+                  <td>
+                    {parseFloat(variation.price) > 0
+                      ? variation.price + " " + variation.coin
+                      : "Gratis"}
+                  </td>
+                </tr>
+              ))}
               </tbody>
             </table>
           </div>
@@ -76,7 +74,8 @@ function Description() {
           }
         >
           Ver detalles en el portal de servicios
-        </button>{" "}
+        </button>
+        {" "}
         <button
           onClick={() =>
             window.open(`${PORTAL_URL}/requestService/${params.id}`, "_blank")
@@ -89,4 +88,3 @@ function Description() {
   );
 }
 
-export default Description;
